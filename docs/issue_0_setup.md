@@ -47,12 +47,12 @@ Initialize the project repository with the base skeleton: empty directory struct
 - [x] `docs/issue_0_setup.md` — this file (Day 0 tracking)
 
 ### 🌐 GitHub Remote
-- [ ] Public repository created: `gh repo create ale-camer/market-intelligence-hub --public`
-- [ ] Remote added and initial commit pushed
-- [ ] Milestones created (M1–M5)
-- [ ] Issues created (#1–#21)
-- [ ] Branch `develop` pushed to remote
-- [ ] Branch `feature/day-0-setup` pushed to remote
+- [x] Public repository created: https://github.com/ale-camer/market-intelligence-hub
+- [x] Remote added and initial commit pushed
+- [x] Milestones created (M1–M5, numbers 1–5)
+- [x] Issues created (#1–#23, 23 atomic issues across 5 milestones)
+- [x] Branch `develop` pushed to remote
+- [x] Branch `feature/day-0-setup` pushed to remote
 
 ### 🔀 Merge & Close
 - [ ] PR: `feature/day-0-setup` → `develop`
