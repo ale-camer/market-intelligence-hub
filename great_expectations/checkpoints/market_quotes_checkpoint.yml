@@ -1,0 +1,4 @@
+name: market_quotes_checkpoint
+config_version: 1.0
+class_name: SimpleCheckpoint
+expectation_suite_name: market_quotes_suite

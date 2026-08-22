@@ -1,0 +1,47 @@
+{
+  "data_asset_type": null,
+  "expectation_suite_name": "price_history_suite",
+  "expectations": [
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "ticker"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "bar_timestamp"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "close_price"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_pair_values_A_to_be_greater_than_or_equal_to_B",
+      "kwargs": {
+        "column_A": "high_price",
+        "column_B": "low_price"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "volume",
+        "min_value": 0.0
+      },
+      "meta": {}
+    }
+  ],
+  "ge_cloud_id": null,
+  "meta": {
+    "great_expectations_version": "0.18.8"
+  }
+}

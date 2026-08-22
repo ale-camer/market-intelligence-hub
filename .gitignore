@@ -67,3 +67,8 @@ coverage.xml
 
 # === Docker ===
 *.override.yml
+
+# === Great Expectations ===
+great_expectations/uncommitted/
+gx/uncommitted/
+
