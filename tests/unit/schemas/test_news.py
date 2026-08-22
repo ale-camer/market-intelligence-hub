@@ -63,4 +63,4 @@ def test_financial_article_frozen() -> None:
     )
 
     with pytest.raises(ValidationError):
-        article.title = "Updated Title"  # type: ignore[misc]
+        article.title = "Updated Title"

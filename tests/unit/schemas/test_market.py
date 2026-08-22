@@ -58,7 +58,7 @@ def test_market_quote_frozen() -> None:
     )
 
     with pytest.raises(ValidationError):
-        quote.current_price = 150.0  # type: ignore[misc]
+        quote.current_price = 150.0
 
 
 def test_price_bar_creation() -> None:

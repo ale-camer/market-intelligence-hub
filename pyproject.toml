@@ -97,7 +97,7 @@ ignore = ["S101"]
 known-first-party = ["src"]
 
 [tool.mypy]
-python_version = "3.11"
+python_version = "3.12"
 strict = true
 explicit_package_bases = true
 ignore_missing_imports = true
