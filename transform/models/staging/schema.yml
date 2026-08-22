@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: stg_coingecko__markets
+    description: "Staging model for CoinGecko crypto market data."
+    columns:
+      - name: id
+        description: "CoinGecko unique identifier."
+        tests:
+          - not_null
+          - unique
+      - name: ticker
+        description: "Symbol ticker (e.g., BTC)."
+        tests:
+          - not_null
+      - name: asset_class
+        description: "Asset class category."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['crypto']
+
+  - name: stg_yahoo__quotes
+    description: "Staging model for Yahoo Finance stock and asset quotes."
+    columns:
+      - name: ticker
+        description: "Asset ticker symbol."
+        tests:
+          - not_null
+          - unique
+      - name: asset_class
+        description: "Asset class category."
+        tests:
+          - not_null
+
+  - name: stg_yahoo__history
+    description: "Staging model for Yahoo Finance historical OHLCV price bars."
+    columns:
+      - name: ticker
+        description: "Asset ticker symbol."
+        tests:
+          - not_null
+      - name: bar_timestamp
+        description: "Timestamp for the OHLCV bar."
+        tests:
+          - not_null
+      - name: close_price
+        description: "Closing price for the interval bar."
+        tests:
+          - not_null
+
+  - name: stg_newsapi__articles
+    description: "Staging model for NewsAPI financial news articles."
+    columns:
+      - name: article_url
+        description: "Unique URL of the news article."
+        tests:
+          - not_null
+          - unique
+      - name: title
+        description: "Article headline title."
+        tests:
+          - not_null
+      - name: published_at
+        description: "Publication timestamp."
+        tests:
+          - not_null

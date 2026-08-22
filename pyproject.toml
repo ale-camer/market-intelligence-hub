@@ -49,7 +49,7 @@ dependencies = [
     # apache-airflow = ">=2.9.0",
 
     # dbt
-    # dbt-bigquery = ">=1.8.0",
+    "dbt-bigquery>=1.8.0",
 
     # Observability
     "prometheus-client>=0.20.0",

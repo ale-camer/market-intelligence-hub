@@ -1,0 +1,10 @@
+market_intelligence_hub:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: "{{ env_var('GCP_PROJECT', 'market-intelligence-hub-dev') }}"
+      dataset: "{{ env_var('GCP_DATASET', 'raw_market_data') }}"
+      threads: 4
+      keyfile: "{{ env_var('GCP_KEYFILE', 'gcp-key.json') }}"

@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: raw_market_data
+    description: "Raw ingested data from financial APIs (CoinGecko, Yahoo Finance, NewsAPI)."
+    tables:
+      - name: raw_coingecko_markets
+        description: "Raw crypto market data ingested from CoinGecko API."
+      - name: raw_yahoo_quotes
+        description: "Raw stock and market quotes ingested from Yahoo Finance API."
+      - name: raw_yahoo_history
+        description: "Raw historical OHLCV price bars ingested from Yahoo Finance API."
+      - name: raw_newsapi_articles
+        description: "Raw financial news articles ingested from NewsAPI."
