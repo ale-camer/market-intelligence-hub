@@ -33,4 +33,6 @@ models:
   market_intelligence_hub:
     staging:
       +materialized: view
+    marts:
+      +materialized: table
 

@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: dim_assets
+    description: "Dimension table of all unique traded assets across crypto and equities."
+    columns:
+      - name: ticker
+        description: "Unique asset symbol (e.g. BTC, AAPL)."
+        tests:
+          - not_null
+          - unique
+      - name: name
+        description: "Human-readable asset name."
+        tests:
+          - not_null
+      - name: asset_class
+        description: "Category of the asset."
+        tests:
+          - not_null
+
+  - name: fct_market_quotes
+    description: "Fact table containing the latest market quote snapshot per asset."
+    columns:
+      - name: ticker
+        description: "Asset symbol referencing dim_assets."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_assets')
+                field: ticker
+      - name: current_price
+        description: "Latest recorded price."
+        tests:
+          - not_null
+
+  - name: fct_price_history
+    description: "Fact table containing historical OHLCV price bars."
+    columns:
+      - name: ticker
+        description: "Asset symbol referencing dim_assets."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_assets')
+                field: ticker
+      - name: bar_timestamp
+        description: "Timestamp of the price bar."
+        tests:
+          - not_null
+
+  - name: fct_news_articles
+    description: "Fact table containing cleaned financial news articles."
+    columns:
+      - name: article_url
+        description: "Unique web link for the news article."
+        tests:
+          - not_null
+          - unique
+      - name: title
+        description: "Article title headline."
+        tests:
+          - not_null
