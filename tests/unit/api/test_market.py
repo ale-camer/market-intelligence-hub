@@ -5,9 +5,17 @@ from unittest.mock import MagicMock
 
 from fastapi.testclient import TestClient
 
-from src.api.dependencies import get_postgres_repository
+from src.api.dependencies import get_current_user, get_postgres_repository
 from src.api.main import create_app
 from src.loaders.postgres.models import MarketQuoteORM, PriceHistoryORM
+
+
+def test_market_unauthenticated() -> None:
+    """Test unauthenticated access returns 401 Unauthorized."""
+    app = create_app()
+    client = TestClient(app)
+    response = client.get("/api/v1/market/quotes/BTC")
+    assert response.status_code == 401
 
 
 def test_get_market_quote_success() -> None:
@@ -32,6 +40,7 @@ def test_get_market_quote_success() -> None:
     mock_repo.get_latest_market_quote.return_value = mock_quote
 
     app.dependency_overrides[get_postgres_repository] = lambda: mock_repo
+    app.dependency_overrides[get_current_user] = lambda: "admin"
     client = TestClient(app)
 
     response = client.get("/api/v1/market/quotes/BTC")
@@ -49,6 +58,7 @@ def test_get_market_quote_not_found() -> None:
     mock_repo.get_latest_market_quote.return_value = None
 
     app.dependency_overrides[get_postgres_repository] = lambda: mock_repo
+    app.dependency_overrides[get_current_user] = lambda: "admin"
     client = TestClient(app)
 
     response = client.get("/api/v1/market/quotes/UNKNOWN")
@@ -77,6 +87,7 @@ def test_get_price_bars_success() -> None:
     mock_repo.get_price_bars.return_value = [mock_bar]
 
     app.dependency_overrides[get_postgres_repository] = lambda: mock_repo
+    app.dependency_overrides[get_current_user] = lambda: "admin"
     client = TestClient(app)
 
     response = client.get("/api/v1/market/bars/AAPL?limit=10&offset=0")

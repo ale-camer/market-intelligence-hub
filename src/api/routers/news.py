@@ -4,7 +4,7 @@ from typing import Any
 
 from fastapi import APIRouter, Depends, Query
 
-from src.api.dependencies import get_postgres_repository
+from src.api.dependencies import get_current_user, get_postgres_repository
 from src.loaders.postgres.repository import PostgresRepository
 
 router = APIRouter(prefix="/news", tags=["Financial News"])
@@ -17,6 +17,7 @@ def get_financial_news(
     limit: int = Query(default=100, ge=1, le=1000),
     offset: int = Query(default=0, ge=0),
     repo: PostgresRepository = Depends(get_postgres_repository),
+    _current_user: str = Depends(get_current_user),
 ) -> list[dict[str, Any]]:
     """Retrieve financial news articles with optional filters and pagination."""
     articles = repo.get_news(category=category, source=source, limit=limit, offset=offset)

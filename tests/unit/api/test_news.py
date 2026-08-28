@@ -5,9 +5,17 @@ from unittest.mock import MagicMock
 
 from fastapi.testclient import TestClient
 
-from src.api.dependencies import get_postgres_repository
+from src.api.dependencies import get_current_user, get_postgres_repository
 from src.api.main import create_app
 from src.loaders.postgres.models import FinancialArticleORM
+
+
+def test_news_unauthenticated() -> None:
+    """Test unauthenticated news request returns 401 Unauthorized."""
+    app = create_app()
+    client = TestClient(app)
+    response = client.get("/api/v1/news")
+    assert response.status_code == 401
 
 
 def test_get_financial_news_success() -> None:
@@ -33,6 +41,7 @@ def test_get_financial_news_success() -> None:
     mock_repo.get_news.return_value = [mock_article]
 
     app.dependency_overrides[get_postgres_repository] = lambda: mock_repo
+    app.dependency_overrides[get_current_user] = lambda: "admin"
     client = TestClient(app)
 
     response = client.get("/api/v1/news?category=general&limit=5")

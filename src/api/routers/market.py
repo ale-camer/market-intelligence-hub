@@ -4,7 +4,7 @@ from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 
-from src.api.dependencies import get_postgres_repository
+from src.api.dependencies import get_current_user, get_postgres_repository
 from src.loaders.postgres.repository import PostgresRepository
 
 router = APIRouter(prefix="/market", tags=["Market Data"])
@@ -14,6 +14,7 @@ router = APIRouter(prefix="/market", tags=["Market Data"])
 def get_latest_quote(
     ticker: str,
     repo: PostgresRepository = Depends(get_postgres_repository),
+    _current_user: str = Depends(get_current_user),
 ) -> dict[str, Any]:
     """Retrieve latest market quote for a given ticker symbol."""
     quote = repo.get_latest_market_quote(ticker=ticker.upper())
@@ -44,6 +45,7 @@ def get_price_bars(
     limit: int = Query(default=100, ge=1, le=1000),
     offset: int = Query(default=0, ge=0),
     repo: PostgresRepository = Depends(get_postgres_repository),
+    _current_user: str = Depends(get_current_user),
 ) -> list[dict[str, Any]]:
     """Retrieve historical price bars (OHLCV) for a given ticker."""
     bars = repo.get_price_bars(ticker=ticker.upper(), limit=limit, offset=offset)
