@@ -15,4 +15,7 @@ test:
 coverage:
 	.venv/bin/pytest tests/ -v --cov=src --cov-report=term-missing --cov-report=html
 
+run-api:
+	.venv/bin/uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
+
 check: format lint typecheck coverage
