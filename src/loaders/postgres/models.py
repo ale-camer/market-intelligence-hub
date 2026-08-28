@@ -10,7 +10,6 @@ class Base(DeclarativeBase):
     """Base class for all SQLAlchemy ORM models."""
 
 
-
 class MarketQuoteORM(Base):
     """ORM representation of canonical MarketQuote schema."""
 
