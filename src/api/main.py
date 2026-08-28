@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from src.api.config import APIConfig
 from src.api.exceptions import register_exception_handlers
-from src.api.routers import health
+from src.api.routers import health, market, news
 
 
 def create_app() -> FastAPI:
@@ -32,6 +32,8 @@ def create_app() -> FastAPI:
     # Register routers
     app.include_router(health.router, prefix=APIConfig.API_PREFIX)
     app.include_router(health.router)  # Also include root-level /health
+    app.include_router(market.router, prefix=APIConfig.API_PREFIX)
+    app.include_router(news.router, prefix=APIConfig.API_PREFIX)
 
     return app
 

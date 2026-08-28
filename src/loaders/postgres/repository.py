@@ -103,3 +103,48 @@ class PostgresRepository:
         with self.get_session() as session:
             session.add_all(orm_objs)
         return len(orm_objs)
+
+    def get_latest_market_quote(self, ticker: str) -> MarketQuoteORM | None:
+        """Fetch latest market quote for a given ticker."""
+        with self.get_session() as session:
+            return (
+                session.query(MarketQuoteORM)
+                .filter(MarketQuoteORM.ticker == ticker)
+                .order_by(MarketQuoteORM.ingested_at.desc())
+                .first()
+            )
+
+    def get_price_bars(
+        self, ticker: str, limit: int = 100, offset: int = 0
+    ) -> list[PriceHistoryORM]:
+        """Fetch price history bars for a given ticker with pagination."""
+        with self.get_session() as session:
+            return (
+                session.query(PriceHistoryORM)
+                .filter(PriceHistoryORM.ticker == ticker)
+                .order_by(PriceHistoryORM.dt.desc())
+                .offset(offset)
+                .limit(limit)
+                .all()
+            )
+
+    def get_news(
+        self,
+        category: str | None = None,
+        source: str | None = None,
+        limit: int = 100,
+        offset: int = 0,
+    ) -> list[FinancialArticleORM]:
+        """Fetch financial news articles with optional filters and pagination."""
+        with self.get_session() as session:
+            query = session.query(FinancialArticleORM)
+            if category:
+                query = query.filter(FinancialArticleORM.category == category)
+            if source:
+                query = query.filter(FinancialArticleORM.source == source)
+            return (
+                query.order_by(FinancialArticleORM.published_at.desc())
+                .offset(offset)
+                .limit(limit)
+                .all()
+            )
