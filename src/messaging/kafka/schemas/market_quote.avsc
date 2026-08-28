@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "MarketQuoteRecord",
+  "namespace": "com.marketintelligence.events",
+  "doc": "Avro schema representation of canonical MarketQuote schema",
+  "fields": [
+    {"name": "source", "type": "string"},
+    {"name": "ticker", "type": "string"},
+    {"name": "asset_class", "type": "string"},
+    {"name": "name", "type": ["null", "string"], "default": null},
+    {"name": "current_price", "type": ["null", "double"], "default": null},
+    {"name": "market_cap", "type": ["null", "long"], "default": null},
+    {"name": "volume_24h", "type": ["null", "double"], "default": null},
+    {"name": "currency", "type": "string", "default": "USD"},
+    {"name": "exchange", "type": ["null", "string"], "default": null},
+    {"name": "price_change_pct_24h", "type": ["null", "double"], "default": null},
+    {"name": "ingested_at", "type": "string"}
+  ]
+}

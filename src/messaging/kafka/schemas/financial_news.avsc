@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "name": "FinancialArticleRecord",
+  "namespace": "com.marketintelligence.events",
+  "doc": "Avro schema representation of canonical FinancialArticle schema",
+  "fields": [
+    {"name": "source", "type": "string"},
+    {"name": "title", "type": "string"},
+    {"name": "description", "type": ["null", "string"], "default": null},
+    {"name": "url", "type": "string"},
+    {"name": "image_url", "type": ["null", "string"], "default": null},
+    {"name": "author", "type": ["null", "string"], "default": null},
+    {"name": "published_at", "type": "string"},
+    {"name": "content", "type": ["null", "string"], "default": null},
+    {"name": "source_name", "type": "string"},
+    {"name": "source_id", "type": ["null", "string"], "default": null},
+    {"name": "category", "type": ["null", "string"], "default": null},
+    {"name": "ingested_at", "type": "string"}
+  ]
+}
