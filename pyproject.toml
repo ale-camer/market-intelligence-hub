@@ -24,7 +24,7 @@ dependencies = [
     "polars>=0.20.0",
 
     # Data Quality
-    "great-expectations>=0.18.0",
+    "great-expectations~=0.18.0",
 
     # Database
     "sqlalchemy>=2.0.0",
