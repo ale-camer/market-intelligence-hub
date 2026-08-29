@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - name: 'Market Intelligence Dashboards'
+    orgId: 1
+    folder: 'Market Intelligence'
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/json

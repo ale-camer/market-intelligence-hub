@@ -1,0 +1,60 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "title": "API Request Rate (req/s)",
+      "type": "timeseries",
+      "targets": []
+    },
+    {
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 0
+      },
+      "id": 2,
+      "title": "HTTP Error Rate (4xx/5xx)",
+      "type": "timeseries",
+      "targets": []
+    },
+    {
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "id": 3,
+      "title": "Response Latency p95 (ms)",
+      "type": "stat",
+      "targets": []
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["api", "fastapi"],
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "title": "API Metrics",
+  "uid": "api-metrics",
+  "version": 1
+}

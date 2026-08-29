@@ -1,0 +1,48 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "title": "Crypto Quotes Last Ingested",
+      "type": "stat",
+      "targets": []
+    },
+    {
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "title": "News Articles Count (Last 24h)",
+      "type": "stat",
+      "targets": []
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["data", "freshness"],
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "title": "Data Freshness",
+  "uid": "data-freshness",
+  "version": 1
+}
