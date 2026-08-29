@@ -99,4 +99,5 @@ data_docs_sites:
         class_name: DefaultSiteIndexBuilder
 
 anonymous_usage_statistics:
-  enabled: True
+  enabled: False
+  data_context_id: 00000000-0000-0000-0000-000000000000
