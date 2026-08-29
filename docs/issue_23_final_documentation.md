@@ -27,26 +27,26 @@ Finalize the project documentation to ensure the Market Intelligence Hub is easi
 ## Checklist
 
 ### 🌿 Step 1 — Branch & Setup
-- [ ] Ensure `develop` is up-to-date: `git checkout develop && git pull`.
-- [ ] Create the issue branch: `git checkout -b feature/issue-23-final-documentation`.
+- [x] Ensure `develop` is up-to-date: `git checkout develop && git pull`.
+- [x] Create the issue branch: `git checkout -b feature/issue-23-final-documentation`.
 
 ### 📚 Step 2 — Architecture Decision Records (ADRs)
-- [ ] Create `docs/adrs/` directory.
-- [ ] Write `0001-use-dbt-for-transformations.md` detailing why dbt was chosen over pure SQL scripts or Pandas.
-- [ ] Write `0002-use-kafka-for-event-streaming.md` explaining the event-driven decoupling between extraction and loading.
-- [ ] Write `0003-use-fastapi-for-serving-layer.md` justifying the use of FastAPI for synchronous data serving.
+- [x] Create `docs/adrs/` directory.
+- [x] Write `0001-use-dbt-for-transformations.md` detailing why dbt was chosen over pure SQL scripts or Pandas.
+- [x] Write `0002-use-kafka-for-event-streaming.md` explaining the event-driven decoupling between extraction and loading.
+- [x] Write `0003-use-fastapi-for-serving-layer.md` justifying the use of FastAPI for synchronous data serving.
 
 ### 📖 Step 3 — Data Dictionary
-- [ ] Create `docs/data_dictionary.md`.
-- [ ] Document the `raw` layer (e.g., `market_quotes_raw`, `news_articles_raw`).
-- [ ] Document the `staging` layer schemas.
-- [ ] Document the `marts` layer (dimension and fact tables).
+- [x] Create `docs/data_dictionary.md`.
+- [x] Document the `raw` layer (e.g., `market_quotes_raw`, `news_articles_raw`).
+- [x] Document the `staging` layer schemas.
+- [x] Document the `marts` layer (dimension and fact tables).
 
 ### 📝 Step 4 — Polish README
-- [ ] Update `README.md` to reflect the final state of the project.
-- [ ] Add instructions for running the local stack via Docker Compose.
-- [ ] Add instructions for running tests and linters.
-- [ ] Link to the ADRs and Data Dictionary.
+- [x] Update `README.md` to reflect the final state of the project.
+- [x] Add instructions for running the local stack via Docker Compose.
+- [x] Add instructions for running tests and linters.
+- [x] Link to the ADRs and Data Dictionary.
 
 ### 🔀 Step 5 — Commit, Merge & Close
 - [ ] `git add docs/ README.md`

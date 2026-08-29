@@ -54,6 +54,15 @@
 
 ---
 
+## 📚 Documentation & ADRs
+
+- **[Data Dictionary](docs/data_dictionary.md)**: Explore the data schemas for the raw, staging, and marts layers.
+- **[ADR 0001: dbt for Transformations](docs/adrs/0001-use-dbt-for-transformations.md)**
+- **[ADR 0002: Kafka for Event Streaming](docs/adrs/0002-use-kafka-for-event-streaming.md)**
+- **[ADR 0003: FastAPI for Serving Layer](docs/adrs/0003-use-fastapi-for-serving-layer.md)**
+
+---
+
 ## 📦 Tech Stack
 
 | Layer | Technology |
@@ -76,7 +85,7 @@
 
 ## 🗂️ Repository Structure
 
-```
+```text
 market-intelligence-hub/
 ├── src/
 │   ├── extractors/     # Data source extractors (CoinGecko, YFinance, NewsAPI, Glassnode)
@@ -99,6 +108,7 @@ market-intelligence-hub/
 
 ## 🚀 Quick Start (Development)
 
+### 1. Local Environment Setup
 ```bash
 # Clone the repository
 git clone https://github.com/ale-camer/market-intelligence-hub.git
@@ -114,12 +124,33 @@ pip install -e ".[dev]"
 # Copy and configure environment variables
 cp .env.example .env
 # Edit .env with your API keys and credentials
+```
 
-# Run tests
-pytest
+### 2. Running the Infrastructure (Docker Compose)
+The project includes a complete local stack containing PostgreSQL, Kafka, Zookeeper, Airflow, and Grafana.
 
-# Run linting
+```bash
+# Spin up the infrastructure in detached mode
+docker compose up -d
+
+# Check the status of the containers
+docker compose ps
+```
+Services exposed locally:
+- **Airflow Web UI**: `http://localhost:8080` (admin/admin)
+- **Grafana Dashboards**: `http://localhost:3000` (admin/adminpassword)
+- **PostgreSQL**: `localhost:5432`
+
+### 3. Testing and Linting
+```bash
+# Run unit and integration tests with coverage
+pytest --cov=src tests/
+
+# Run code linters (Ruff)
 ruff check src/ tests/
+ruff format --check src/ tests/
+
+# Run static type checking (MyPy)
 mypy src/
 ```
 
@@ -129,11 +160,11 @@ mypy src/
 
 | Milestone | Description | Status |
 |:----------|:------------|:------:|
-| M1 — Data Extraction | Extractors, Pydantic schemas, unit tests | ⬜ Pending |
-| M2 — Transformation & Quality | dbt models, Great Expectations, Airflow DAGs | ⬜ Pending |
-| M3 — Storage & Warehouse | PostgreSQL loader, BigQuery loader, Kafka | ⬜ Pending |
-| M4 — API & Serving | FastAPI endpoints, auth, rate limiting | ⬜ Pending |
-| M5 — Infra & Observability | Terraform, Grafana, CI/CD, final docs | ⬜ Pending |
+| M1 — Data Extraction | Extractors, Pydantic schemas, unit tests | ✅ Done |
+| M2 — Transformation & Quality | dbt models, Great Expectations, Airflow DAGs | ✅ Done |
+| M3 — Storage & Warehouse | PostgreSQL loader, BigQuery loader, Kafka | ✅ Done |
+| M4 — API & Serving | FastAPI endpoints, auth, rate limiting | ✅ Done |
+| M5 — Infra & Observability | Terraform, Grafana, CI/CD, final docs | ✅ Done |
 
 ---
 
