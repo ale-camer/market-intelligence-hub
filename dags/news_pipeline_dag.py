@@ -1,9 +1,10 @@
 from datetime import datetime, timedelta
 from typing import Any
 
-import great_expectations as gx
 from airflow.decorators import dag, task
 from airflow.operators.empty import EmptyOperator
+
+import great_expectations as gx
 
 default_args = {
     "owner": "market_intelligence",
