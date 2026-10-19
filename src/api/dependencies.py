@@ -18,8 +18,9 @@ def get_postgres_repository() -> Generator[PostgresRepository, None, None]:
     """Dependency provider yielding a configured PostgresRepository instance."""
     global _repo_instance
     if _repo_instance is None:
-        db_url = os.getenv("POSTGRES_URL", "sqlite:///:memory:")
-        _repo_instance = PostgresRepository(database_url=db_url)
+        db_url = os.getenv("POSTGRES_URL") or os.getenv("DATABASE_URL") or "sqlite:///:memory:"
+        schema_name = os.getenv("DB_SCHEMA", "p05_intel_hub")
+        _repo_instance = PostgresRepository(database_url=db_url, schema=schema_name)
         _repo_instance.create_tables()
     yield _repo_instance
 

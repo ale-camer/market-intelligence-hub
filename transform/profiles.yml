@@ -1,10 +1,17 @@
 market_intelligence_hub:
-  target: dev
+  target: "{{ env_var('DBT_TARGET', 'dev') }}"
   outputs:
     dev:
       type: bigquery
       method: service-account
-      project: "{{ env_var('GCP_PROJECT', 'market-intelligence-hub-dev') }}"
-      dataset: "{{ env_var('GCP_DATASET', 'raw_market_data') }}"
+      project: "{{ env_var('GCP_PROJECT_ID', 'market-intelligence-hub-dev') }}"
+      dataset: "{{ env_var('BQ_STAGING_DATASET', 'raw_market_data') }}"
       threads: 4
       keyfile: "{{ env_var('GCP_KEYFILE', 'gcp-key.json') }}"
+    prod:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT_ID', 'gen-lang-client-0887473308') }}"
+      dataset: "{{ env_var('BQ_STAGING_DATASET', 'staging_prod') }}"
+      threads: 4
+      location: "{{ env_var('GCP_REGION', 'us-central1') }}"

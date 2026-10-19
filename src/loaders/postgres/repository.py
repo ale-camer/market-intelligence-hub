@@ -1,9 +1,10 @@
 """Repository implementation for PostgreSQL storage using SQLAlchemy 2.0."""
 
+import os
 from collections.abc import Generator
 from contextlib import contextmanager
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, event
 from sqlalchemy.orm import Session, sessionmaker
 
 from src.loaders.postgres.models import (
@@ -19,9 +20,22 @@ from src.schemas.news import FinancialArticle
 class PostgresRepository:
     """Repository pattern for handling PostgreSQL database operations."""
 
-    def __init__(self, database_url: str = "sqlite:///:memory:") -> None:
+    def __init__(
+        self,
+        database_url: str = "sqlite:///:memory:",
+        schema: str | None = None,
+    ) -> None:
         """Initialize database engine and sessionmaker."""
+        self.schema = schema or os.getenv("DB_SCHEMA")
         self.engine = create_engine(database_url, echo=False)
+
+        if self.schema and not database_url.startswith("sqlite"):
+            @event.listens_for(self.engine, "connect")
+            def set_search_path(dbapi_connection: any, connection_record: any) -> None:
+                cursor = dbapi_connection.cursor()
+                cursor.execute(f"SET search_path TO {self.schema}, public;")
+                cursor.close()
+
         self.session_factory = sessionmaker(bind=self.engine, expire_on_commit=False)
 
     def create_tables(self) -> None:
