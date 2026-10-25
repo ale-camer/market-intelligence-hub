@@ -12,7 +12,7 @@ renamed as (
         cast(low as numeric) as low_price,
         cast(close as numeric) as close_price,
         cast(volume as numeric) as volume,
-        cast(interval as string) as bar_interval,
+        cast(`interval` as string) as bar_interval,
         'yahoo_finance' as source_name,
         cast(ingested_at as timestamp) as ingested_at
     from source
